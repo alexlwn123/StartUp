@@ -4,7 +4,7 @@ startup.py is a Command Line application for launching websites. Think of it as 
 
 I plan to further develop this program to add more functionality such as retrieving notification data from websites and displaying it in either the command line or the gui.
 
-gui:
-![gui](gui.png)
+
+![gui](gui.PNG "gui")
 
 (11/27/18)
