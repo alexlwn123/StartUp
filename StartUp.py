@@ -13,7 +13,9 @@ supported_sites = {                                              #
         'GroupMe' : 'https://web.groupme.com/chats',             #
         'Facebook' : 'https://www.facebook.com/',                #
         'Google Calendar' : 'https://calendar.google.com',       #
-        'GitHub' : 'https://github.com/'                         #
+        'GitHub' : 'https://github.com/',                        #
+        'Kattis' : 'https://open.kattis.com/',                   #
+        'Reddit' : 'https://www.reddit.com/'                     #
         }                                                        #
                                                                  #
 ##################################################################
@@ -36,6 +38,8 @@ supported_sites = {                                              #
 
 from tkinter import *
 from requests.structures import CaseInsensitiveDict
+from bs4 import BeautifulSoup
+import requests
 import os
 import argparse
 import sys
@@ -51,7 +55,7 @@ def launch_all(is_dry):
         if not is_dry:
             launch_website(site)
         else:
-            print('%s: [%s]' % (site_name, _Sites[site_name]))
+            print('%s: [%s]' % (site, _Sites[site]))
 
 def list_sites():
     global _Sites
@@ -108,6 +112,14 @@ def open_sites(site_names, is_dry):
     if has_failed:
         print("\nUse \"%s -l\" for a list of supported sites." % sys.argv[0])
 
+def get_favorite_sites():
+    chrome_url = 'chrome://newtab'
+    resp = requests.get(chrome_url)
+    soup = BeautifulSoup(resp.text, 'lxml')
+    urls = []
+    for h in soup.find_all('a'):
+        urls.append(h.find('a').attrs['herf'])
+    print(str(urls))
 
 #Callback Shim for buttons
 class Callback:
