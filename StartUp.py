@@ -1,10 +1,10 @@
-#Command Line Application to open websites
+#Command Line Application to open websites and applications
 #Author: Alex Lewin (GitHub: github.com/alexlwn123)
 #Version: 1.0 (11/27/18)
 #
 
 ####################################
-#ADD OR UPDATE SUPPORTED SITES HERE#
+#ADD OR UPDATE SUPPORTED SITES AND APPLICATIONS HERE#
 ##################################################################
                                                                  #
 supported_sites = {                                              #
@@ -15,7 +15,9 @@ supported_sites = {                                              #
         'Google Calendar' : 'https://calendar.google.com',       #
         'GitHub' : 'https://github.com/',                        #
         'Kattis' : 'https://open.kattis.com/',                   #
-        'Reddit' : 'https://www.reddit.com/'                     #
+        'Reddit' : 'https://www.reddit.com/',                    #
+        'Auburn' : 'http://auburn.edu/',
+        'Outlook' : 'C:\Program Files (x86)\Microsoft Office\\root\Office16\OUTLOOK.EXE'#
         }                                                        #
                                                                  #
 ##################################################################
@@ -46,8 +48,10 @@ import sys
 
 #Argument Functions
 def launch_website(site_name):
+  if _Sites[site_name].startswith('http'):
     os.system('explorer %s' % _Sites[site_name])
-
+  else:
+    os.startfile(_Sites[site_name])
 
 def launch_all(is_dry):
     global _Sites
@@ -70,7 +74,9 @@ def list_sites():
 def list_sites_verbose():
     global _Sites
     print('\nList of Supported Sites with URLs')
+    print('-----------------')
     print("Site Title: [url]")
+    print('-----------------')
     for site in _Sites:
         print('%s: [%s]' % (site, _Sites[site]))
     print('------')
