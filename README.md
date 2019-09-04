@@ -15,3 +15,4 @@ the command line or the gui.
 UPDATES:
 
 9/4/19: Added support for launching applications.
+        Adjusted aesthetics.

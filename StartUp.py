@@ -85,7 +85,8 @@ def list_sites_verbose():
 def make_gui(is_dry):
     global _Sites
     root = Tk()
-    title = Label(root, text="Website Launcher%s" % (' (dry)' if is_dry else ''), font= 'Times 20 bold')
+    root.title('Website and Application Launcher')
+    title = Label(root, text="Click to launch%s" % (' (dry)' if is_dry else ''), font= 'Times 12 bold')
     title.pack()
 
     frame = Frame(root)
